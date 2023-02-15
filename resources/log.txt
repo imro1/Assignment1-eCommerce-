@@ -2,3 +2,7 @@
 {"email":"Ali.raza@gmail.com","message":"Hi Imran","ip":"::1"}
 {"email":"jhenah28@icloud.com","message":"you are the best valorant player","ip":"::1"}
 {"email":"imran.maslianov@icloud.com","message":"Assignment 1 completed","ip":"::1"}
+{"email":"test@test.com","message":"<script>alert(\"Test\")<\/script>","ip":"::1"}
+{"email":"Ali.raza@gmail.com","message":"Hello ","ip":"::1"}
+{"email":"TEST@gmail.com","message":"test#2","ip":"::1"}
+{"email":"sadasdsad@sda.com","message":"ADS","ip":"::1"}

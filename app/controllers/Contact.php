@@ -1,10 +1,9 @@
 <?php
 namespace app\controllers;
-
+//if else
 class Contact extends \app\core\Controller{
 
 	public function index(){
-		$this->view('Contact/index');
 
         if(isset($_POST['action'])){
             $newContact = new \app\models\Contact();
@@ -14,12 +13,16 @@ class Contact extends \app\core\Controller{
             $newContact->insert();
             header('location:/Contact/read');
         }
+        else
+        {
+        	$this->view('Contact/index');
+        }
 	} 
 
 	public function read(){
 		$contact = new \app\models\Contact();
-		$contacts = $contact->getAll();
-		$this->view('Contact/read', $contacts);
+		$contents = $contact->getAll();
+		$this->view('Contact/read', $contents);
 	}
 
 }

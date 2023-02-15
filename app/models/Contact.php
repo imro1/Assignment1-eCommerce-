@@ -1,33 +1,24 @@
 <?php
 namespace app\models;
 
+define('LOG_FILE', 'resources/log.txt');
+
 class Contact{
 	public $email;
     public $message;
     public $ip;
-    private static $file = 'resources/log.txt';
 
 	public function insert(){
 		//TODO: also lock the file
-		$fh = fopen(self::$file, 'a');
-		$array = array('email'=>$this->email, 'message'=>$this->message, 'ip'=>$this->ip);
+		$fh = fopen(LOG_FILE, 'a');
 		flock($fh, LOCK_EX);//need an exclusive lock to write
-		fwrite($fh, json_encode($array) . "\n");
-		flock($fh, LOCK_UN);
+		$values = json_encode($this);
+		fwrite($fh, "$values\n");
 		fclose($fh);//release the resource and the lock
 	}
 
 	public function getAll(){
-		$contacts =  file(self::$file);
-		$values = [];
-		foreach($contacts as $contact){
-			$item = new Contact();
-			$array = json_decode($contact, true);
-			$item->email = $array['email'];
-			$item->message = $array['message'];
-			$item->ip = $array['ip'];
-			$values[] = $item;
-		}
-		return $values;
+		$contents= file(LOG_FILE);
+		return $contents;
 	}
 }
